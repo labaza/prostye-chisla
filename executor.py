@@ -1,25 +1,27 @@
 import time
 
+# init time before
 beforeTime = time.time()
 
-# K = 1 million
-K = 1000000
-lst = [2]
+def Primes(N):
+    primes = [i for i in range(1, N + 1)]
+    primes[0] = 0
+ 
+    for i in range(0, N):
+        if primes[i] != 0:
+            for j in range(i + primes[i], N, primes[i]):
+                primes[j] = 0
+ 
+    return [x for x in primes if x != 0]
 
-for i in range(3, K + 1, 2):
-	if (i > 10) and (i % 10 == 5):
-		continue
-	for j in lst:
-		if j*j - 1 > i:
-			lst.append(i)
-			break
-		if (i % j == 0):
-			break
-	else:
-		lst.append(i)
+# the count of numbers
+K = 30
+Primes(K) 
 
+# init time after
 afterTime = time.time()
 
-print (K)
-print (".......\n")
-print ((float)(afterTime - beforeTime))
+# print the result: for 'Primes(K)' - array : for 'K' - count' number
+print (Primes(K))
+print (".............\n")
+print ((float)(afterTime - beforeTime)) 
